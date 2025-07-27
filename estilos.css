@@ -1,41 +1,41 @@
-/* estilos.css */
+/* estilos.css - Con colores rosados */
 
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #fce4ec; /* Rosado muy claro */
+    color: #4a4a4a; /* Gris oscuro para el texto principal */
 }
 
 h1 {
-    color: #0056b3;
+    color: #ad1457; /* Rosado oscuro para el título */
     text-align: center;
     margin-bottom: 30px;
 }
 
 .malla-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que los semestres se ajusten en varias filas */
-    gap: 20px; /* Espacio entre los bloques de semestre */
-    justify-content: center; /* Centra los semestres */
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 .semestre-block {
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #f8bbd0; /* Borde rosado más suave */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     padding: 15px;
-    width: calc(33% - 20px); /* Aproximadamente 3 bloques por fila, ajusta según tu pantalla */
-    min-width: 280px; /* Ancho mínimo para evitar que se pongan muy pequeños */
-    box-sizing: border-box; /* Incluye padding y border en el ancho */
+    width: calc(33% - 20px);
+    min-width: 280px;
+    box-sizing: border-box;
 }
 
 .semestre-title {
-    background-color: #007bff;
+    background-color: #d81b60; /* Rosado medio para el título del semestre */
     color: white;
     padding: 8px 15px;
-    margin: -15px -15px 15px -15px; /* Ajusta para que ocupe todo el ancho superior del bloque */
+    margin: -15px -15px 15px -15px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     font-weight: bold;
@@ -50,8 +50,8 @@ h1 {
 
 .ramo-item {
     padding: 8px 0;
-    border-bottom: 1px dashed #eee;
-    cursor: pointer; /* Indica que es clicable */
+    border-bottom: 1px dashed #fce4ec; /* Borde rosado muy claro para separación */
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
@@ -60,27 +60,24 @@ h1 {
 }
 
 .ramo-item:hover {
-    background-color: #f9f9f9;
+    background-color: #fcf1f5; /* Rosado aún más claro al pasar el mouse */
 }
 
-/* Colores para los estados de los ramos */
+/* Colores para los estados de los ramos (tonos rosados) */
 .estado-Pendiente {
-    color: #d9534f; /* Rojo */
+    color: #ec407a; /* Rosado vibrante */
 }
 
 .estado-Cursando {
-    color: #f0ad4e; /* Naranjo/Amarillo */
+    color: #ffa000; /* Naranjo oscuro (mantengo este para contraste en "cursando" que es más neutral) */
 }
 
 .estado-Aprobado {
-    color: #5cb85c; /* Verde */
-    text-decoration: line-through; /* Tachado para ramos aprobados */
+    color: #43a047; /* Verde (un verde que combine bien con rosados, o puedes elegir otro rosado) */
+    text-decoration: line-through;
 }
 
-.estado-Convalidado {
-    color: #5bc0de; /* Azul claro */
-    font-style: italic;
-}
+/* --- La categoría Convalidado ha sido eliminada --- */
 
 .ramo-code {
     font-weight: bold;
@@ -96,7 +93,7 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #e9ecef;
+    background-color: #f8bbd0; /* Fondo rosado suave */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
@@ -118,23 +115,22 @@ h1 {
     height: 20px;
     border-radius: 4px;
     margin-right: 8px;
-    border: 1px solid #ccc; /* Para que se vea el borde en colores claros */
+    border: 1px solid #e0b0c2; /* Borde rosado claro para las cajas de color */
 }
-.color-box.pendiente { background-color: #d9534f; }
-.color-box.cursando { background-color: #f0ad4e; }
-.color-box.aprobado { background-color: #5cb85c; }
-.color-box.convalidado { background-color: #5bc0de; }
+.color-box.pendiente { background-color: #ec407a; }
+.color-box.cursando { background-color: #ffa000; } /* Mantengo el naranja para cursando, puedes cambiarlo si quieres */
+.color-box.aprobado { background-color: #43a047; } /* Mantengo el verde para aprobado */
 
 /* Media queries para responsividad */
 @media (max-width: 1200px) {
     .semestre-block {
-        width: calc(50% - 20px); /* 2 bloques por fila en pantallas medianas */
+        width: calc(50% - 20px);
     }
 }
 
 @media (max-width: 768px) {
     .semestre-block {
-        width: calc(100% - 20px); /* 1 bloque por fila en pantallas pequeñas */
+        width: calc(100% - 20px);
     }
     .legend {
         flex-direction: column;
