@@ -469,7 +469,8 @@ const mallaCurricular = [
 ];
 
 const mallaContainer = document.getElementById('mallaContainer');
-const estados = ["Pendiente", "Cursando", "Aprobado", "Convalidado"]; // Ciclo de estados
+// Modificación aquí: Se eliminó "Convalidado"
+const estados = ["Pendiente", "Cursando", "Aprobado"]; // Ciclo de estados
 
 // Función para renderizar la malla
 function renderMalla() {
@@ -489,7 +490,7 @@ function renderMalla() {
         semestreData.ramos.forEach(ramo => {
             const ramoItem = document.createElement('li');
             ramoItem.classList.add('ramo-item', `estado-${ramo.estado}`);
-            ramoItem.dataset.codigo = ramo.codigo; // Guarda el código para fácil acceso
+            ramoItem.dataset.codigo = ramo.codigo;
 
             const ramoCode = document.createElement('span');
             ramoCode.classList.add('ramo-code');
@@ -500,23 +501,19 @@ function renderMalla() {
             ramoName.textContent = ramo.nombre;
 
             ramoItem.appendChild(ramoCode);
-            ramoItem.appendChild(document.createTextNode(' - ')); // Separador
+            ramoItem.appendChild(document.createTextNode(' - '));
             ramoItem.appendChild(ramoName);
 
-            // Agrega el tooltip de pre-requisitos si los hay
             if (ramo.prerequisitos && ramo.prerequisitos.length > 0) {
                 ramoItem.title = `Pre-requisitos: ${ramo.prerequisitos.join(', ')}`;
             }
 
-            // Evento de clic para cambiar el estado
             ramoItem.addEventListener('click', () => {
                 const currentIndex = estados.indexOf(ramo.estado);
                 const nextIndex = (currentIndex + 1) % estados.length;
                 ramo.estado = estados[nextIndex];
-                // Vuelve a renderizar para que los cambios se reflejen
                 renderMalla();
-                // Opcional: Guardar el estado actual en LocalStorage (para persistencia)
-                // saveMallaState();
+                saveMallaState(); // Guarda el estado actualizado
             });
             ramosList.appendChild(ramoItem);
         });
@@ -526,17 +523,15 @@ function renderMalla() {
 }
 
 // Función para cargar el estado de la malla desde LocalStorage
-// Esta función es opcional, pero recomendada para que los cambios persistan
 function loadMallaState() {
     const savedMalla = localStorage.getItem('mallaCurricularState');
     if (savedMalla) {
-        // Fusionar el estado guardado con la estructura original
         const loadedData = JSON.parse(savedMalla);
         mallaCurricular.forEach(semestre => {
             semestre.ramos.forEach(ramo => {
                 const savedRamo = loadedData.find(s => s.semestre === semestre.semestre)
                                             ?.ramos.find(r => r.codigo === ramo.codigo);
-                if (savedRamo) {
+                if (savedRamo && estados.includes(savedRamo.estado)) { // Asegura que el estado cargado sea válido
                     ramo.estado = savedRamo.estado;
                 }
             });
@@ -552,6 +547,6 @@ function saveMallaState() {
 
 // Renderiza la malla al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-    loadMallaState(); // Intenta cargar el estado guardado
-    renderMalla(); // Renderiza la malla con el estado (inicial o guardado)
+    loadMallaState();
+    renderMalla();
 });
