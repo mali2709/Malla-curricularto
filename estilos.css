@@ -1,1 +1,143 @@
+/* estilos.css */
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.malla-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los semestres se ajusten en varias filas */
+    gap: 20px; /* Espacio entre los bloques de semestre */
+    justify-content: center; /* Centra los semestres */
+}
+
+.semestre-block {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: calc(33% - 20px); /* Aproximadamente 3 bloques por fila, ajusta según tu pantalla */
+    min-width: 280px; /* Ancho mínimo para evitar que se pongan muy pequeños */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+.semestre-title {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    margin: -15px -15px 15px -15px; /* Ajusta para que ocupe todo el ancho superior del bloque */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.ramos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ramo-item {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    cursor: pointer; /* Indica que es clicable */
+    transition: background-color 0.2s ease;
+}
+
+.ramo-item:last-child {
+    border-bottom: none;
+}
+
+.ramo-item:hover {
+    background-color: #f9f9f9;
+}
+
+/* Colores para los estados de los ramos */
+.estado-Pendiente {
+    color: #d9534f; /* Rojo */
+}
+
+.estado-Cursando {
+    color: #f0ad4e; /* Naranjo/Amarillo */
+}
+
+.estado-Aprobado {
+    color: #5cb85c; /* Verde */
+    text-decoration: line-through; /* Tachado para ramos aprobados */
+}
+
+.estado-Convalidado {
+    color: #5bc0de; /* Azul claro */
+    font-style: italic;
+}
+
+.ramo-code {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.ramo-name {
+    font-size: 0.95em;
+}
+
+/* Estilos para el panel de filtros y leyenda */
+.controls-panel {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 1px solid #ccc; /* Para que se vea el borde en colores claros */
+}
+.color-box.pendiente { background-color: #d9534f; }
+.color-box.cursando { background-color: #f0ad4e; }
+.color-box.aprobado { background-color: #5cb85c; }
+.color-box.convalidado { background-color: #5bc0de; }
+
+/* Media queries para responsividad */
+@media (max-width: 1200px) {
+    .semestre-block {
+        width: calc(50% - 20px); /* 2 bloques por fila en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .semestre-block {
+        width: calc(100% - 20px); /* 1 bloque por fila en pantallas pequeñas */
+    }
+    .legend {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
